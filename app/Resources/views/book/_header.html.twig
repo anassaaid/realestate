@@ -1,0 +1,21 @@
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <header>
+        <div class="navbar navbar-dark bg-dark">
+            <div class="container d-flex justify-content-end">
+                <span class="navbar-brand">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                    |</span>
+
+
+                <a href="{{ path('books') }}" class="navbar-brand">Rechercher des annonces</a>
+                {% if app.user %}
+                <a href="{{ path('create_book') }}" class="navbar-brand">Déposer une annonce</a>
+                {% endif %}
+                <hr>
+                <a href="{{ path('fos_user_profile_show') }}" class="navbar-brand">Profile</a>
+                <a href="{{ path('fos_user_profile_edit') }}" class="navbar-brand">Edit Profile</a>
+                <a href="{{ path('fos_user_change_password') }}" class="navbar-brand">Change Password</a>
+                <a href="{{ path('fos_user_security_logout') }}" class="navbar-brand">Logout</a>
+            </div>
+        </div>
+    </header>
+{% endif %}

@@ -1,0 +1,7 @@
+book:
+    title: Titre
+    price: Prix
+    published_at: Publié le
+    available: Disponible
+    cover: Couverture
+    author: Auteur

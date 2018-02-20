@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/css/login.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+
+        <form class="form-signin" method="post" novalidate>
+            <h2 class="form-signin-heading">Please sign in</h2>
+
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input id="inputEmail" class="form-control" name="_username" value="{{ last_username }}"
+                   placeholder="Email address" required autofocus>
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="_password" id="inputPassword" class="form-control" placeholder="Password"
+                   required>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <hr>
+            <a class="btn btn-lg btn-danger btn-block" href="{{ path('fos_user_resetting_request') }}" type="button">Reset
+                password</a>
+            <a class="btn btn-lg btn-secondary btn-block" href="{{ path('fos_user_registration_register') }}"
+               type="button">Register</a>
+        </form>
+
+    </div> <!-- /container -->
+{% endblock %}

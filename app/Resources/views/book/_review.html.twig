@@ -1,0 +1,7 @@
+<div>
+    <div>
+        <strong>{{ review.commenter }}: </strong>
+    {% include 'book/_stars.html.twig' with {'stars': review.stars} only %}
+        {{ review.comment }}
+    </div>
+</div>

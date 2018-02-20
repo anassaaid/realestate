@@ -1,0 +1,9 @@
+<div>
+    {% for i in 1..5 %}
+        {% if i <= stars %}
+            <img src="{{ '/images/star.png' }}">
+        {% else %}
+            <img src="{{ '/images/star-o.png' }}">
+        {% endif %}
+    {% endfor %}
+</div>

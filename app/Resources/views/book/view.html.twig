@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/css/books.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {% include 'book/_header.html.twig' %}
+
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Transtu Library</h1>
+                <a href="http://www.transtu.tn/fr/" role="button">
+                    <img src="{{ '/images/transtu_logo.png' }}" alt="Transtu logo">
+                </a>
+                <hr>
+                <h3>Book details</h3>
+            </div>
+        </section>
+
+        <div class="album text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>{{ book.title }}</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ path('edit_book', {'id': book.id}) }}" class="btn btn-primary">Edit Book</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Tags:
+                            {% for tag in book.tags %}
+                                <span class="badge badge-info">{{ tag.name }}</span>
+                            {% endfor %}
+                        </h4>
+                        <hr>
+                        <h4>Price: {{ book.price }} $</h4>
+                        <hr>
+                        <h4>Author: {{ book.author.name }} ({{ book.author.nationality }})</h4>
+                        {% if book.available %}
+                            <span class="badge badge-success float-right">Disponible</span>
+                        {% else %}
+                            <span class="badge badge-warning float-right">Non disponible</span>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <img class="float-right" src="{{ vich_uploader_asset(book, 'coverFile') }}" alt="Card image cap">
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <h4>Reviews</h4>
+                    <div>
+                        {% for review in book.reviews %}
+                            {% include 'book/_review.html.twig' with {'review': review} only %}
+                            <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include 'book/_footer.html.twig' %}
+{% endblock %}

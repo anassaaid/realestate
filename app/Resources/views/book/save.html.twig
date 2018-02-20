@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{#{% form_theme form 'bootstrap_4_layout.html.twig' %}#}
+{#{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}#}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/css/books.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {% include 'book/_header.html.twig' %}
+
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Transtu Library</h1>
+                <a href="http://www.transtu.tn/fr/" role="button">
+                    <img src="{{ '/images/transtu_logo.png' }}" alt="Transtu logo">
+                </a>
+                <hr>
+                <h3>Add a new book</h3>
+            </div>
+        </section>
+
+        <div class="album text-muted">
+            <div class="container">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </main>
+    {% include 'book/_footer.html.twig' %}
+{% endblock %}

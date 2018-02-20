@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/css/books.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {% include 'book/_header.html.twig' %}
+
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Transtu Library</h1>
+                <a href="http://www.transtu.tn/fr/" role="button">
+                    <img src="{{ '/images/transtu_logo.png' }}" alt="Transtu logo">
+                </a>
+                <hr>
+                <p>
+                    <a href="{{ path('books') }}" class="btn btn-primary">All books</a>
+                    <a href="{{ path('books', {'available': true}) }}" class="btn btn-success">Available books</a>
+                    <a href="{{ path('books', {'cheap': true}) }}" class="btn btn-warning">Cheap books (< 80 $)</a>
+                </p>
+            </div>
+        </section>
+
+        <div class="album text-muted">
+            <div class="container">
+                <h4>Total number: {{ books | length }}</h4>
+                <div class="row">
+                    {% for book in books %}
+                        <div class="card">
+                            <a href="{{ path('view_book', {id: book.id}) }}">
+                                <img src="{{ vich_uploader_asset(book, 'coverFile') }}" alt="Card image cap">
+                            </a>
+                            <h4>{{ book.title }}</h4>
+                            <p class="float-right">{{ book.price }} $</p>
+                            {%  if book.available %}
+                                <span class="badge badge-success float-right">Disponible</span>
+                            {% else %}
+                                <span class="badge badge-warning float-right">Non disponible</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </main>
+    {% include 'book/_footer.html.twig' %}
+{% endblock %}
