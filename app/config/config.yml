@@ -78,9 +78,9 @@ swiftmailer:
 vich_uploader:
     db_driver: orm
     mappings:
-        book_cover:
-            uri_prefix: /images/uploads
-            upload_destination: '%kernel.project_dir%/web/images/uploads'
+        photo:
+            uri_prefix: /images/uploads/photos
+            upload_destination: '%kernel.project_dir%/web/images/uploads/photos/'
             namer: vich_uploader.namer_uniqid
 
 fos_user:
