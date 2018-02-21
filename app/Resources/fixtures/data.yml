@@ -17,13 +17,13 @@ AppBundle\Entity\Annonce:
 AppBundle\Entity\User:
   user_1:
     username: 'anas'
-    password: 'anas'
+    plainPassword: 'anas'
     email: 'anassaaid@gmail.com'
     enabled: 1
 
   user_{2..100}:
     username: '<userName()>'
-    password: '<password()>'    
+    plainPassword: <password()>
     email: '<email()>'  
 
 AppBundle\Entity\Photo:
