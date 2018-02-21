@@ -26,4 +26,39 @@ class User extends BaseUser
      */
     private $annonces;
 
+    /**
+     * Add annonce.
+     *
+     * @param \AppBundle\Entity\Annonce $annonce
+     *
+     * @return User
+     */
+    public function addAnnonce(\AppBundle\Entity\Annonce $annonce)
+    {
+        $this->annonces[] = $annonce;
+
+        return $this;
+    }
+
+    /**
+     * Remove annonce.
+     *
+     * @param \AppBundle\Entity\Annonce $annonce
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAnnonce(\AppBundle\Entity\Annonce $annonce)
+    {
+        return $this->annonces->removeElement($annonce);
+    }
+
+    /**
+     * Get annonces.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnnonces()
+    {
+        return $this->annonces;
+    }
 }
